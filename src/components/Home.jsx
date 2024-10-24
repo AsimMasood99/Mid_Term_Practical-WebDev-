@@ -6,11 +6,11 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Footer from "./Footer";
 import MovieDataContext from "../movieContext/movieContext";
+import { Link } from "react-router-dom";
 
 function Home() {
-	
 	const [search, setSearch] = useState("");
-  const {moviesData,setMoviesData} = useContext(MovieDataContext)
+	const { moviesData, setMoviesData } = useContext(MovieDataContext);
 	const addToFav = (movie) => {
 		setMoviesData(
 			moviesData.map((data) => {
@@ -46,11 +46,13 @@ function Home() {
 						})
 						.map((filteredMovie, index) => {
 							return (
-								<MovieCard
-									key={index}
-									movieData={filteredMovie}
-									addToFav={addToFav}
-								/>
+								<Link to={`/movie/${filteredMovie.Title}`}>
+									<MovieCard
+										key={index}
+										movieData={filteredMovie}
+										addToFav={addToFav}
+									/>
+								</Link>
 							);
 						})}
 				</div>
