@@ -1,15 +1,22 @@
 import React from "react";
+import { FaHeart } from "react-icons/fa";
 
-function MovieCard() {
+function MovieCard({ movieData, addToFav }) {
 	return (
-		<div className="flex flex-col border-2 w-96 h-72 p-3 rounded-md">
-      <div>
-        <img src="" alt="" />
-      </div>
-			<div className="text-xl font-bold">Title</div>
+		<div className="flex flex-col w-96 h-72">
+			<img
+				src={movieData.Poster}
+				alt=""
+				className="h-[80%] w-full object-cover rounded-md"
+			/>
+			<div className="text-xl font-bold">{movieData.Title}</div>
 			<div className="flex justify-between">
-				<span>Released</span>
-        <span>Rating</span>
+				<span>Released: {movieData.Year}</span>
+
+				<FaHeart
+					className={movieData.isFav ? "text-red-700" : ""}
+					onClick={()=>addToFav(movieData.Title)}
+				/>
 			</div>
 		</div>
 	);
